@@ -4,11 +4,14 @@ skip_workflows: []
 llm:
   api_key: ${GRAPHRAG_API_KEY}
   type: openai_chat # or azure_openai_chat
-  model: gpt-4-turbo-preview
+#  model: gpt-4-turbo-preview
+  model: qwen2:7b-instruct-q5_K_M
+#  model: qwen2:72b
   model_supports_json: true # recommended if this is available for your model.
   # max_tokens: 4000
   # request_timeout: 180.0
   # api_base: https://<instance>.openai.azure.com
+  api_base: http://localhost:11434/v1
   # api_version: 2024-02-15-preview
   # organization: <organization_id>
   # deployment_name: <azure_model_deployment_name>
@@ -17,7 +20,7 @@ llm:
   # max_retries: 10
   # max_retry_wait: 10.0
   # sleep_on_rate_limit_recommendation: true # whether to sleep when azure suggests wait-times
-  # concurrent_requests: 25 # the number of parallel inflight requests that may be made
+  concurrent_requests: 3 # the number of parallel inflight requests that may be made
 
 parallelization:
   stagger: 0.3
@@ -31,8 +34,10 @@ embeddings:
   llm:
     api_key: ${GRAPHRAG_API_KEY}
     type: openai_embedding # or azure_openai_embedding
-    model: text-embedding-3-small
+#    model: text-embedding-3-small
+    model: nomic-embed-text:latest
     # api_base: https://<instance>.openai.azure.com
+    api_base: http://localhost:11434/v1
     # api_version: 2024-02-15-preview
     # organization: <organization_id>
     # deployment_name: <azure_model_deployment_name>
